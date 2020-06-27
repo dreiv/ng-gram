@@ -10,14 +10,16 @@ import { switchMap } from 'rxjs/operators';
 export class AuthService {
   private user: BehaviorSubject<Observable<User | null>>;
 
-  user$ = this.user
-    .asObservable()
-    .pipe(switchMap((user: Observable<User | null>) => user));
+  user$: Observable<User | null>;
 
   constructor(private afAuth: AngularFireAuth) {
     this.user = new BehaviorSubject<Observable<User | null>>(
       this.afAuth.authState
     );
+
+    this.user$ = this.user
+      .asObservable()
+      .pipe(switchMap((user: Observable<User | null>) => user));
   }
 
   loginViaGoogle(): Observable<auth.UserCredential> {

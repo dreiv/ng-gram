@@ -1,15 +1,62 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { User } from 'firebase/app';
+import { Observable, EMPTY } from 'rxjs';
+import { take, catchError } from 'rxjs/operators';
+
+import { AuthService } from '../../services/auth/auth.service';
+import { FEED } from '../../constants/routes.const';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
+  user$: Observable<User | null> = this.auth.user$;
 
-  constructor() { }
+  constructor(
+    private readonly auth: AuthService,
+    private readonly snackBar: MatSnackBar,
+    private readonly router: Router,
+  ) { }
 
-  ngOnInit(): void {
+  login(): void {
+    this.auth
+      .loginViaGoogle()
+      .pipe(
+        take(1),
+        catchError((error) => {
+          this.snackBar.open(`${error.message} 😢`, 'Close', {
+            duration: 4000,
+          });
+          return EMPTY;
+        }),
+      )
+      .subscribe(
+        (response) =>
+          response &&
+          this.snackBar.open(
+            `Oh! You're here. I demand that you feed me, Hooman. 😾`,
+            'Close',
+            {
+              duration: 4000,
+            },
+          ),
+      );
+  }
+
+  logout(): void {
+    this.auth
+      .logout()
+      .pipe(take(1))
+      .subscribe((response) => {
+        this.router.navigate([`/${FEED}`]);
+        this.snackBar.open('Come back soon with treats! 😿', 'Close', {
+          duration: 4000,
+        });
+      });
   }
 
 }
