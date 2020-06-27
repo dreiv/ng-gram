@@ -12,7 +12,7 @@ export class AuthService {
 
   user$: Observable<User | null>;
 
-  constructor(private afAuth: AngularFireAuth) {
+  constructor(private readonly afAuth: AngularFireAuth) {
     this.user = new BehaviorSubject<Observable<User | null>>(
       this.afAuth.authState
     );

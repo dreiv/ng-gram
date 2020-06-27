@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppFirebaseModule } from './app-firebase.module';
 import { AppMaterialModule } from './app-material.module';
@@ -23,7 +24,8 @@ import { HeaderComponent } from './components/header/header.component';
     AppFirebaseModule,
     AppMaterialModule,
     AppRoutingModule,
-    BrowserModule
+    BrowserModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
