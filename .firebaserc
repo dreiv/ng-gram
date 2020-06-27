@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "nggram-f227d": {
+      "hosting": {
+        "ng-gram": [
+          "nggram-f227d"
+        ]
+      }
+    }
+  }
+}
