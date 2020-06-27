@@ -1,11 +1,11 @@
 {
-  "name": "ng-upload-to-firebase",
+  "name": "ng-gram",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build:prod": "ng build --prod --base-href=/ng-upload-to-firebase/",
+    "build:prod": "ng build --prod --base-href=/ng-gram/",
     "test": "ng test",
     "lint": "tsc --noEmit && eslint . --ext js,ts,json --quiet --fix",
     "e2e": "ng e2e"
