@@ -5,21 +5,17 @@ import {
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { BASE, CREATE, FEED } from './constants/routes.const';
+import { BASE, CREATE } from './constants/routes.const';
 import { CreateComponent } from './components/create/create.component';
 import { FeedComponent } from './components/feed/feed.component';
 
-const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo([FEED]);
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo([BASE]);
 
 const routes: Routes = [
   {
     path: BASE,
-    redirectTo: `/${FEED}`,
-    pathMatch: 'full',
-  },
-  {
-    path: FEED,
     component: FeedComponent,
+    pathMatch: 'full',
   },
   {
     path: CREATE,

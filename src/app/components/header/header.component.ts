@@ -6,7 +6,7 @@ import { Observable, EMPTY } from 'rxjs';
 import { take, catchError } from 'rxjs/operators';
 
 import { AuthService } from '../../services/auth/auth.service';
-import { FEED } from '../../constants/routes.const';
+import { BASE } from '../../constants/routes.const';
 
 @Component({
   selector: 'app-header',
@@ -52,7 +52,7 @@ export class HeaderComponent {
       .logout()
       .pipe(take(1))
       .subscribe((response) => {
-        this.router.navigate([`/${FEED}`]);
+        this.router.navigate([`/${BASE}`]);
         this.snackBar.open('Come back soon with treats! 😿', 'Close', {
           duration: 4000,
         });

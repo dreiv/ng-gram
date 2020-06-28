@@ -6,7 +6,7 @@ import { catchError, takeUntil } from 'rxjs/operators';
 import { User } from 'firebase/app';
 
 import { AuthService } from '../../services/auth/auth.service';
-import { FEED } from '../../constants/routes.const';
+import { BASE } from '../../constants/routes.const';
 import { MEDIA_STORAGE_PATH } from '../../constants/storage.const';
 import { StorageService } from '../../services/storage/storage.service';
 import { UtilService } from '../../services/util/util.service';
@@ -85,7 +85,7 @@ export class CreateComponent implements OnInit, OnDestroy {
       )
       .subscribe((downloadUrl) => {
         this.submitted = false;
-        this.router.navigate([`/${FEED}`]);
+        this.router.navigate([`/${BASE}`]);
       });
   }
 
