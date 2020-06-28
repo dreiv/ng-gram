@@ -40,9 +40,9 @@
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Describe your Kitty</mat-label>
         <textarea
-          mat-autosize
-          matAutosizeMinRows="2"
-          matAutosizeMaxRows="4"
+          [mat-autosize]="true"
+          [matAutosizeMinRows]="2"
+          [matAutosizeMaxRows]="4"
           formControlName="description"
           matInput placeholder="Describe your cute Kitty to us 😻">
         </textarea>
