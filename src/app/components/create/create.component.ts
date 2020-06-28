@@ -19,6 +19,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class CreateComponent implements OnInit, OnDestroy {
   private unsubscribe$ = new Subject<void>();
+
   form: FormGroup;
   fileToUpload!: File;
   kittyImagePreview!: string | ArrayBuffer | null;
@@ -66,10 +67,11 @@ export class CreateComponent implements OnInit, OnDestroy {
     this.submitted = true;
     const mediaFolderPath = `${MEDIA_STORAGE_PATH}/${this.user?.email}/media/`;
 
-    const { downloadUrl$, uploadProgress$ } = this.storageService.uploadFileAndGetMetadata(
-      mediaFolderPath,
-      this.fileToUpload,
-    );
+    const { downloadUrl$, uploadProgress$ } = this.storageService
+      .uploadFileAndGetMetadata(
+        mediaFolderPath,
+        this.fileToUpload,
+      );
 
     this.uploadProgress$ = uploadProgress$;
 
@@ -93,18 +95,20 @@ export class CreateComponent implements OnInit, OnDestroy {
     this.unsubscribe$.next();
   }
 
+  hasError(control: string, error = 'required'): boolean {
+    return this.form.controls[control].hasError(error) &&
+      this.form.controls[control].touched;
+  }
+
   private image(photoControl: AbstractControl): { [key: string]: boolean } | null {
     if (photoControl.value) {
       const [kittyImage] = photoControl.value.files;
 
       return this.utilService.validateFile(kittyImage)
         ? null
-        : {
-            image: true,
-          };
+        : { image: true };
     }
 
     return null;
   }
-
 }

@@ -33,6 +33,6 @@ export class StorageService {
     path: string
   ): Observable<string> {
     return from(uploadTask)
-      .pipe(switchMap((_) => this.storage.ref(path).getDownloadURL()));
+      .pipe(switchMap(() => this.storage.ref(path).getDownloadURL()));
   }
 }

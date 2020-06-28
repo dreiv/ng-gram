@@ -1,1 +1,1 @@
-export const MEDIA_STORAGE_PATH = `ngGram/media/`;
+export const MEDIA_STORAGE_PATH = `media/`;
